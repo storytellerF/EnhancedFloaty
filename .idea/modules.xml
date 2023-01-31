@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/EnhancedFloaty.iml" filepath="$PROJECT_DIR$/EnhancedFloaty.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/EnhancedFloaty.iml" filepath="$PROJECT_DIR$/.idea/modules/EnhancedFloaty.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/EnhancedFloaty.lib.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/EnhancedFloaty.lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/EnhancedFloaty.lib.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/EnhancedFloaty.lib.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/EnhancedFloaty.lib.main.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/EnhancedFloaty.lib.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib/EnhancedFloaty.lib.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/lib/EnhancedFloaty.lib.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/EnhancedFloaty.sample.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/EnhancedFloaty.sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/EnhancedFloaty.sample.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/EnhancedFloaty.sample.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/EnhancedFloaty.sample.main.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/EnhancedFloaty.sample.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/EnhancedFloaty.sample.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/EnhancedFloaty.sample.unitTest.iml" />
     </modules>
   </component>
 </project>
