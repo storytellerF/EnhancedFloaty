@@ -1,6 +1,6 @@
 package com.stardust.enhancedfloaty.sample;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 
