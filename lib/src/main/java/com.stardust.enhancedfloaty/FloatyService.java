@@ -3,8 +3,9 @@ package com.stardust.enhancedfloaty;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import androidx.annotation.Nullable;
 import android.view.WindowManager;
+
+import androidx.annotation.Nullable;
 
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -14,7 +15,9 @@ import java.util.concurrent.CopyOnWriteArraySet;
 
 public class FloatyService extends Service {
 
-    private static CopyOnWriteArraySet<FloatyWindow> windows = new CopyOnWriteArraySet<>();
+    private static final CopyOnWriteArraySet<FloatyWindow> windows = new CopyOnWriteArraySet<>();
+    private static FloatyService instance;
+    private WindowManager mWindowManager;
 
     public static void addWindow(FloatyWindow window) {
         if (windows.add(window) && instance != null) {
@@ -25,9 +28,6 @@ public class FloatyService extends Service {
     public static void removeWindow(FloatyWindow window) {
         windows.remove(window);
     }
-
-    private static FloatyService instance;
-    private WindowManager mWindowManager;
 
     @Override
     public void onCreate() {

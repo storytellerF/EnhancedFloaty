@@ -3,8 +3,9 @@ package com.stardust.enhancedfloaty.sample;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 import com.stardust.enhancedfloaty.FloatyService;
 import com.stardust.enhancedfloaty.R;
@@ -25,18 +26,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         FloatingWindowPermissionUtil.goToFloatingWindowPermissionSettingIfNeeded(this);
         startService(new Intent(this, FloatyService.class));
-        findViewById(R.id.resizable_floaty).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FloatyService.addWindow(new ResizableFloatyWindow(new SampleFloaty()));
-            }
-        });
-        findViewById(R.id.expandable_floaty).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FloatyService.addWindow(new ResizableExpandableFloatyWindow(new SampleExpandableFloaty()));
-            }
-        });
+        findViewById(R.id.resizable_floaty).setOnClickListener(v -> FloatyService.addWindow(new ResizableFloatyWindow(new SampleFloaty())));
+        findViewById(R.id.expandable_floaty).setOnClickListener(v -> FloatyService.addWindow(new ResizableExpandableFloatyWindow(new SampleExpandableFloaty())));
     }
 
 }

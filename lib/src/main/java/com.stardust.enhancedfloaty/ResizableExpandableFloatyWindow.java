@@ -23,7 +23,7 @@ public class ResizableExpandableFloatyWindow extends FloatyWindow {
     private static final String TAG = "ExpandableFloatyService";
 
 
-    private ResizableExpandableFloaty mFloaty;
+    private final ResizableExpandableFloaty mFloaty;
     private ViewSwitcher mCollapseExpandViewSwitcher;
     private View mCollapsedView;
     private View mExpandedView;
@@ -33,7 +33,7 @@ public class ResizableExpandableFloatyWindow extends FloatyWindow {
     private int mCollapsedViewX, mCollapsedViewY;
     private int mExpandedViewX, mExpandedViewY;
 
-    private ViewStack mViewStack = new ViewStack(new ViewStack.CurrentViewSetter() {
+    private final ViewStack mViewStack = new ViewStack(new ViewStack.CurrentViewSetter() {
         @Override
         public void setCurrentView(View v) {
             mCollapseExpandViewSwitcher.setSecondView(v);
@@ -199,21 +199,16 @@ public class ResizableExpandableFloatyWindow extends FloatyWindow {
         dragGesture.setPressedAlpha(getFloaty().getCollapsedViewPressedAlpha());
         dragGesture.setKeepToSide(true);
         dragGesture.setKeepToSideHiddenWidthRadio(getFloaty().getCollapsedHiddenWidthRadio());
-        dragGesture.setOnDraggedViewClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                expand();
-            }
-        });
+        dragGesture.setOnDraggedViewClickListener(v -> expand());
         setDragGesture(dragGesture);
-    }
-
-    protected void setDragGesture(DragGesture dragGesture) {
-        mDragGesture = dragGesture;
     }
 
     protected DragGesture getDragGesture() {
         return mDragGesture;
+    }
+
+    protected void setDragGesture(DragGesture dragGesture) {
+        mDragGesture = dragGesture;
     }
 
     public void expand() {
@@ -239,21 +234,16 @@ public class ResizableExpandableFloatyWindow extends FloatyWindow {
     }
 
     protected void setKeyListener() {
-        getWindowView().setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-                    onBackPressed();
-                    return true;
-                }
-                if (keyCode == KeyEvent.KEYCODE_HOME) {
-                    onHomePressed();
-                    return true;
-                }
-                return false;
+        getWindowView().setOnKeyListener((v, keyCode, event) -> {
+            if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                onBackPressed();
+                return true;
             }
-
-
+            if (keyCode == KeyEvent.KEYCODE_HOME) {
+                onHomePressed();
+                return true;
+            }
+            return false;
         });
     }
 

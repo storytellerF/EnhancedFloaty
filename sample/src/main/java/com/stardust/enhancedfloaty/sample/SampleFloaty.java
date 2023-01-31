@@ -1,8 +1,9 @@
 package com.stardust.enhancedfloaty.sample;
 
-import androidx.annotation.Nullable;
 import android.view.ContextThemeWrapper;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 import com.stardust.enhancedfloaty.FloatyService;
 import com.stardust.enhancedfloaty.R;
@@ -20,22 +21,14 @@ public class SampleFloaty extends ResizableFloaty.AbstractResizableFloaty {
     @Override
     public View inflateView(final FloatyService service, final ResizableFloatyWindow window) {
         View view = View.inflate(new ContextThemeWrapper(service, R.style.AppTheme), R.layout.floating_window_expanded, null);
-        view.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                window.close();
-            }
-        });
-        view.findViewById(R.id.move_or_resize).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mMoveCursor.getVisibility() == View.VISIBLE) {
-                    mMoveCursor.setVisibility(View.GONE);
-                    mResizer.setVisibility(View.GONE);
-                } else {
-                    mMoveCursor.setVisibility(View.VISIBLE);
-                    mResizer.setVisibility(View.VISIBLE);
-                }
+        view.findViewById(R.id.close).setOnClickListener(v -> window.close());
+        view.findViewById(R.id.move_or_resize).setOnClickListener(v -> {
+            if (mMoveCursor.getVisibility() == View.VISIBLE) {
+                mMoveCursor.setVisibility(View.GONE);
+                mResizer.setVisibility(View.GONE);
+            } else {
+                mMoveCursor.setVisibility(View.VISIBLE);
+                mResizer.setVisibility(View.VISIBLE);
             }
         });
         return view;

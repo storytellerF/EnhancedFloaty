@@ -1,9 +1,10 @@
 package com.stardust.enhancedfloaty.gesture;
 
-import androidx.core.view.GestureDetectorCompat;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.core.view.GestureDetectorCompat;
 
 import com.stardust.enhancedfloaty.WindowBridge;
 
@@ -35,18 +36,15 @@ public class DragGesture extends GestureDetector.SimpleOnGestureListener {
 
     private void setupView() {
         final GestureDetectorCompat gestureDetector = new GestureDetectorCompat(mView.getContext(), this);
-        mView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                gestureDetector.onTouchEvent(event);
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    mView.setAlpha(mUnpressedAlpha);
-                    if (!mFlung && isKeepToSide()) {
-                        keepToSide();
-                    }
+        mView.setOnTouchListener((v, event) -> {
+            gestureDetector.onTouchEvent(event);
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                mView.setAlpha(mUnpressedAlpha);
+                if (!mFlung && isKeepToSide()) {
+                    keepToSide();
                 }
-                return true;
             }
+            return true;
         });
     }
 
@@ -66,20 +64,20 @@ public class DragGesture extends GestureDetector.SimpleOnGestureListener {
         mUnpressedAlpha = unpressedAlpha;
     }
 
-    public void setKeepToSide(boolean keepToSide) {
-        mKeepToSide = keepToSide;
-    }
-
     public boolean isKeepToSide() {
         return mKeepToSide;
     }
 
-    public void setKeepToSideHiddenWidthRadio(float keepToSideHiddenWidthRadio) {
-        mKeepToSideHiddenWidthRadio = keepToSideHiddenWidthRadio;
+    public void setKeepToSide(boolean keepToSide) {
+        mKeepToSide = keepToSide;
     }
 
     public float getKeepToSideHiddenWidthRadio() {
         return mKeepToSideHiddenWidthRadio;
+    }
+
+    public void setKeepToSideHiddenWidthRadio(float keepToSideHiddenWidthRadio) {
+        mKeepToSideHiddenWidthRadio = keepToSideHiddenWidthRadio;
     }
 
     @Override

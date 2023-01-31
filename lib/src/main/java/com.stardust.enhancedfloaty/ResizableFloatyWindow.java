@@ -9,7 +9,6 @@ import android.view.WindowManager;
 
 import com.stardust.enhancedfloaty.gesture.DragGesture;
 import com.stardust.enhancedfloaty.gesture.ResizeGesture;
-import com.stardust.enhancedfloaty.util.FloatingWindowPermissionUtil;
 import com.stardust.enhancedfloaty.util.WindowTypeCompat;
 import com.stardust.lib.R;
 
@@ -24,7 +23,7 @@ public class ResizableFloatyWindow extends FloatyWindow {
     private View mView;
     private View mResizer;
     private View mMoveCursor;
-    private ResizableFloaty mFloaty;
+    private final ResizableFloaty mFloaty;
 
     public ResizableFloatyWindow(ResizableFloaty floaty) {
         if (floaty == null) {

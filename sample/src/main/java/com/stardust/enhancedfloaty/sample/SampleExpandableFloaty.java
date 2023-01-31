@@ -2,13 +2,12 @@ package com.stardust.enhancedfloaty.sample;
 
 import android.content.Context;
 import android.content.ContextWrapper;
-import androidx.annotation.Nullable;
 import android.view.ContextThemeWrapper;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.stardust.enhancedfloaty.FloatyService;
 import com.stardust.enhancedfloaty.R;
@@ -50,52 +49,33 @@ public class SampleExpandableFloaty extends ResizableExpandableFloaty.AbstractRe
     }
 
     private void setUpEditText(View view, final ResizableExpandableFloatyWindow window) {
-        final EditText editText = (EditText) view.findViewById(R.id.editText);
-        editText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                window.requestWindowFocus();
-                editText.requestFocus();
-            }
+        final EditText editText = view.findViewById(R.id.editText);
+        editText.setOnClickListener(v -> {
+            window.requestWindowFocus();
+            editText.requestFocus();
         });
-        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    editText.setText("");
-                    window.disableWindowFocus();
-                    return true;
-                }
-                return false;
+        editText.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                editText.setText("");
+                window.disableWindowFocus();
+                return true;
             }
+            return false;
         });
     }
 
     private void setListeners(final View view, final ResizableExpandableFloatyWindow window) {
-        view.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                window.close();
+        view.findViewById(R.id.close).setOnClickListener(v -> window.close());
+        view.findViewById(R.id.move_or_resize).setOnClickListener(v -> {
+            if (mMoveCursor.getVisibility() == View.VISIBLE) {
+                mMoveCursor.setVisibility(View.GONE);
+                mResizer.setVisibility(View.GONE);
+            } else {
+                mMoveCursor.setVisibility(View.VISIBLE);
+                mResizer.setVisibility(View.VISIBLE);
             }
         });
-        view.findViewById(R.id.move_or_resize).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mMoveCursor.getVisibility() == View.VISIBLE) {
-                    mMoveCursor.setVisibility(View.GONE);
-                    mResizer.setVisibility(View.GONE);
-                } else {
-                    mMoveCursor.setVisibility(View.VISIBLE);
-                    mResizer.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-        view.findViewById(R.id.minimize).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                window.collapse();
-            }
-        });
+        view.findViewById(R.id.minimize).setOnClickListener(v -> window.collapse());
 
     }
 

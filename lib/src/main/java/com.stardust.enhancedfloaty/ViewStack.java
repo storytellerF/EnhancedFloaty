@@ -10,16 +10,8 @@ import java.util.Stack;
 
 public class ViewStack {
 
-    public interface CurrentViewSetter {
-        void setCurrentView(View v);
-    }
-
-    public interface NavigableView {
-        void goBack();
-    }
-
-    private Stack<View> mStack = new Stack<>();
-    private CurrentViewSetter mCurrentViewSetter;
+    private final Stack<View> mStack = new Stack<>();
+    private final CurrentViewSetter mCurrentViewSetter;
 
     public ViewStack(CurrentViewSetter currentViewSetter) {
         mCurrentViewSetter = currentViewSetter;
@@ -48,6 +40,14 @@ public class ViewStack {
     public void setRootView(View view) {
         mStack.clear();
         mStack.push(view);
+    }
+
+    public interface CurrentViewSetter {
+        void setCurrentView(View v);
+    }
+
+    public interface NavigableView {
+        void goBack();
     }
 
 

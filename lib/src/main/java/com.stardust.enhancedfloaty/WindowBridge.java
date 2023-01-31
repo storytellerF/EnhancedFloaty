@@ -2,7 +2,6 @@ package com.stardust.enhancedfloaty;
 
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 
 /**
@@ -29,9 +28,9 @@ public interface WindowBridge {
     class DefaultImpl implements WindowBridge {
 
         DisplayMetrics mDisplayMetrics;
-        private WindowManager.LayoutParams mWindowLayoutParams;
-        private WindowManager mWindowManager;
-        private View mWindowView;
+        private final WindowManager.LayoutParams mWindowLayoutParams;
+        private final WindowManager mWindowManager;
+        private final View mWindowView;
 
         public DefaultImpl(WindowManager.LayoutParams windowLayoutParams, WindowManager windowManager, View windowView) {
             mWindowLayoutParams = windowLayoutParams;

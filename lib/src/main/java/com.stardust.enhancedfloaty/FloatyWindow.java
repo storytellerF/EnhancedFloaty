@@ -1,8 +1,9 @@
 package com.stardust.enhancedfloaty;
 
-import androidx.annotation.CallSuper;
 import android.view.View;
 import android.view.WindowManager;
+
+import androidx.annotation.CallSuper;
 
 /**
  * Created by Stardust on 2017/5/1.
@@ -39,7 +40,7 @@ public abstract class FloatyWindow {
 
     }
 
-    protected void attachToWindow(View view, WindowManager manager){
+    protected void attachToWindow(View view, WindowManager manager) {
         getWindowManager().addView(view, getWindowLayoutParams());
         onAttachToWindow(view, manager);
     }
@@ -60,11 +61,6 @@ public abstract class FloatyWindow {
     public void updateWindowLayoutParams(WindowManager.LayoutParams params) {
         setWindowLayoutParams(params);
         mWindowManager.updateViewLayout(getWindowView(), getWindowLayoutParams());
-    }
-
-
-    protected void setWindowManager(WindowManager windowManager) {
-        mWindowManager = windowManager;
     }
 
     public WindowManager.LayoutParams getWindowLayoutParams() {
@@ -89,6 +85,10 @@ public abstract class FloatyWindow {
 
     public WindowManager getWindowManager() {
         return mWindowManager;
+    }
+
+    protected void setWindowManager(WindowManager windowManager) {
+        mWindowManager = windowManager;
     }
 
     public WindowBridge getWindowBridge() {

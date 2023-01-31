@@ -1,11 +1,12 @@
 package com.stardust.enhancedfloaty.gesture;
 
 import android.content.Context;
-import androidx.annotation.Nullable;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.Nullable;
 
 import com.stardust.enhancedfloaty.WindowBridge;
 
@@ -14,6 +15,21 @@ import com.stardust.enhancedfloaty.WindowBridge;
  */
 
 public class ResizeGesture extends GestureDetector.SimpleOnGestureListener {
+
+    private final int mStatusBarHeight;
+    private final WindowBridge mWindowBridge;
+    private float initialTouchX;
+    private float initialTouchY;
+    private int mInitialWidth, mInitialHeight;
+    private final View mResizerView;
+    private int mMinHeight = 200, mMinWidth = 200;
+    private final View mResizableView;
+    public ResizeGesture(WindowBridge windowBridge, View resizerView, @Nullable View resizableView) {
+        mWindowBridge = windowBridge;
+        mResizerView = resizerView;
+        mResizableView = resizableView;
+        mStatusBarHeight = getStatusBarHeight(resizerView.getContext());
+    }
 
     public static ResizeGesture enableResize(View resizer, @Nullable View resizableView, WindowBridge windowBridge) {
         ResizeGesture resizeGesture = new ResizeGesture(windowBridge, resizer, resizableView);
@@ -30,23 +46,6 @@ public class ResizeGesture extends GestureDetector.SimpleOnGestureListener {
 
     public static ResizeGesture enableResize(View resizer, WindowBridge windowBridge) {
         return enableResize(resizer, null, windowBridge);
-    }
-
-    private WindowBridge mWindowBridge;
-    private float initialTouchX;
-    private float initialTouchY;
-    private int mInitialWidth, mInitialHeight;
-    private View mResizerView;
-    private int mMinHeight = 200, mMinWidth = 200;
-    private final int mStatusBarHeight;
-    private View mResizableView;
-
-
-    public ResizeGesture(WindowBridge windowBridge, View resizerView, @Nullable View resizableView) {
-        mWindowBridge = windowBridge;
-        mResizerView = resizerView;
-        mResizableView = resizableView;
-        mStatusBarHeight = getStatusBarHeight(resizerView.getContext());
     }
 
     private int getStatusBarHeight(Context context) {
